@@ -7,10 +7,6 @@
           "message" : {
             "type" : "string"
           },
-          "post_date" : {
-            "type" : "date",
-            "format" : "dateOptionalTime"
-          },
           "user" : {
             "type" : "string"
           }

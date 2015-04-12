@@ -15,7 +15,9 @@ package main {
         val config = ESConfig("twitter", "tweet")
 
         // Insert
+        client.insert(config, Tweet(Some("John doe"), Some("Hello World!")))
         client.insert(config, Tweet(Some("John doe"), Some("Hello World!!")))
+        client.insert(config, Tweet(Some("John doe"), Some("Hello World!!!")))
 //        client.insertJson(config, """{name: "John doe", message: "Hello World!!"}""")
 
         // Update
@@ -33,7 +35,9 @@ package main {
         // Search documents
 //        val list: List[ESSearchResult] = client.list[Tweet](config) { seacher =>
 //        val list: List[ESSearchResult[Tweet]] = client.list[Tweet](config) { seacher =>
-        val list = client.list[Tweet](config) { seacher =>          seacher.setQuery(QueryBuilders.termQuery("name", "John doe"))
+//        val list = client.list[Tweet](config) { seacher =>          
+        val list: ESSearchResult[Tweet] = client.list[Tweet](config) { seacher =>
+          seacher.setQuery(QueryBuilders.termQuery("name", "John doe"))
         }
 
         println(list)

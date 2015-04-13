@@ -30,14 +30,13 @@ package main {
 
         // Find one document
         val tweet: Option[(String, Tweet)] = client.find[Tweet](config) { seacher =>
-          seacher.setQuery(QueryBuilders.termQuery("_id", "1"))
+          seacher.setQuery(QueryBuilders.termQuery("user", "John doe"))
         }
 
+        println(tweet)
+
         // Search documents
-//        val list: List[ESSearchResult] = client.list[Tweet](config) { seacher =>
-//        val list: List[ESSearchResult[Tweet]] = client.list[Tweet](config) { seacher =>
-        val list = client.list[Tweet](config) { seacher =>          
-//        val list: ESSearchResult[Tweet] = client.list[Tweet](config) { seacher =>
+        val list: ESSearchResult[Tweet] = client.list[Tweet](config) { seacher =>
           seacher.setQuery(QueryBuilders.termQuery("user", "John doe"))
         }
 

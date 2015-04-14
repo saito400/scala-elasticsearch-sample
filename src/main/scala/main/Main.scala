@@ -15,10 +15,10 @@ package main {
         val config = ESConfig("twitter", "tweet")
 
         // Insert
-        client.insert(config, Tweet(user = Some("John doe"), message = Some("Hello World!")))
-        client.insert(config, Tweet(user = Some("John doe"), message = Some("Hello World!!")))
-        client.insert(config, Tweet(user = Some("John doe"), message = Some("Hello World!!!")))
-        client.insert(config, Tweet(user = Some("John doe"), message = Some("Hello World!!!!")))
+        client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!")))
+        client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!")))
+        client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!!")))
+        client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!!!")))
 //        client.insertJson(config, """{name: "John doe", message: "Hello World!!"}""")
 
         // Update
@@ -30,14 +30,14 @@ package main {
 
         // Find one document
         val tweet: Option[(String, Tweet)] = client.find[Tweet](config) { seacher =>
-          seacher.setQuery(QueryBuilders.termQuery("user", "John doe"))
+          seacher.setQuery(QueryBuilders.termQuery("user", "JohnDoe"))
         }
 
         println(tweet)
 
         // Search documents
         val list: ESSearchResult[Tweet] = client.list[Tweet](config) { seacher =>
-          seacher.setQuery(QueryBuilders.termQuery("user", "John doe"))
+          seacher.setQuery(QueryBuilders.termQuery("user", "JohnDoe"))
         }
 
         println(list)

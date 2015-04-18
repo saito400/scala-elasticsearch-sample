@@ -14,12 +14,14 @@ package main {
       ESClient.using("http://localhost:9200") { client =>
         val config = ESConfig("twitter", "tweet")
 
+        client.deleteByQuery(config){ searcher => 
+          searcher.setQuery(QueryBuilders.matchQuery("user", "JohnDoe"))
+        }
+
         // Insert
         client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!")))
         client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!")))
         client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!!")))
-        client.insert(config, Tweet(user = Some("JohnDoe"), message = Some("Hello World!!!!")))
-//        client.insertJson(config, """{name: "John doe", message: "Hello World!!"}""")
 
         // Update
 //        client.update(config, "1", Tweet(Some("Jane doe"), Some("Hello Scala!!")))
